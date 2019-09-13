@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  hello-9001:
+    build:
+      context: .
+      args:
+        REF: e3d42c1d8557e26692759b66516bf93b64cae7e6
+        MVN_ARGS: clean package --debug
+    image: hello-image
+    ports:
+      - 9001:8080
+  hello-9002:
+    image: hello-image
+    environment:
+      JAVA_ARGS: com.fail.Main
+    ports:
+      - 9002:8080
+  hello-9003:
+    image: hello-image
+    ports:
+      - 9003:8080
